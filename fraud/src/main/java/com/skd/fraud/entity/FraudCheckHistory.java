@@ -1,4 +1,4 @@
-package com.skd.customer.entity;
+package com.skd.fraud.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,18 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
-@Data
-@Builder
 @Entity
+@Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class FraudCheckHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private Integer customerId;
+    private Boolean isFraudster;
+    private LocalDateTime createdAt;
 
 }
