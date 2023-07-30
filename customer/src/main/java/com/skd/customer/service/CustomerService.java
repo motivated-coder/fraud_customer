@@ -28,7 +28,7 @@ public class CustomerService {
         //check if email is not taken
 
         //check if customer is fraud
-        FraudCheckResponse response = restTemplate.getForObject("http://localhost:8082/api/v1/fraud-check/{customerId}", FraudCheckResponse.class,customer.getId());
+        FraudCheckResponse response = restTemplate.getForObject("http://FRAUD/api/v1/fraud-check/{customerId}", FraudCheckResponse.class,customer.getId());
 
         if(response.getIsFraudster())
             throw new IllegalStateException("Fraud Customer");
