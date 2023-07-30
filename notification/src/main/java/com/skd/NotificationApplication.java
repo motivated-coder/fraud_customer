@@ -1,4 +1,4 @@
-package com.skd.customer;
+package com.skd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +7,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableEurekaServer
-@EnableFeignClients(basePackages = {"com.skd.fraud","com.skd.notification"})
-public class CustomerApplication {
+@EnableFeignClients(basePackages = {"com.skd.notification"})
+public class NotificationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CustomerApplication.class, args);
+        SpringApplication.run(NotificationApplication.class, args);
     }
+
 }
