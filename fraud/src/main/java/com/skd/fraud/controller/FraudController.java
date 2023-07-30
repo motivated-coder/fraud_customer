@@ -1,6 +1,6 @@
 package com.skd.fraud.controller;
 
-import com.skd.fraud.dto.FraudCheckResponse;
+import com.skd.fraud.FraudCheckResponse;
 import com.skd.fraud.service.FraudCheckService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

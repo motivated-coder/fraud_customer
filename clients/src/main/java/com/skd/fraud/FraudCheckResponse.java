@@ -1,4 +1,4 @@
-package com.skd.fraud.dto;
+package com.skd.fraud;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

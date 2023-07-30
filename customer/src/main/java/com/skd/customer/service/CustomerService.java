@@ -1,20 +1,20 @@
 package com.skd.customer.service;
 
 import com.skd.customer.dto.CustomerProfileRequest;
-import com.skd.customer.dto.FraudCheckResponse;
 import com.skd.customer.entity.Customer;
 import com.skd.customer.repository.CustomerRepository;
+import com.skd.fraud.FraudCheckResponse;
+import com.skd.fraud.FraudClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
-    public Customer registerCustomer(CustomerProfileRequest customerProfileRequest){
+    public Customer registerCustomer(CustomerProfileRequest customerProfileRequest) {
         Customer customer = Customer.builder()
                 .firstName(customerProfileRequest.getFirstName())
                 .lastName(customerProfileRequest.getLastName())
@@ -28,9 +28,9 @@ public class CustomerService {
         //check if email is not taken
 
         //check if customer is fraud
-        FraudCheckResponse response = restTemplate.getForObject("http://FRAUD/api/v1/fraud-check/{customerId}", FraudCheckResponse.class,customer.getId());
+        FraudCheckResponse response = fraudClient.isFraudster(customer.getId());
 
-        if(response.getIsFraudster())
+        if (response.getIsFraudster())
             throw new IllegalStateException("Fraud Customer");
         return customer;
     }
